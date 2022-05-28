@@ -6,7 +6,7 @@ import grid
 
 a=510
 b=480
-ffps=30
+ffps=1
 
 class App(QWidget):
     def __init__(self):
@@ -22,8 +22,7 @@ class App(QWidget):
         self.btn_size3()
         self.btn_size4()
         self.btn_exit()
-
-
+        self.spin()
 
     def start(self):
         self.ui.show()
@@ -82,6 +81,13 @@ class App(QWidget):
     def btn_size4(self):
         self.uiy.pushButton_4.clicked.connect(lambda: self.size4())
 
+    def spin(self):
+        self.uiy.spinBox.valueChanged.connect(self.fps)
+
+    def fps(self):
+        global ffps
+        ffps = self.uiy.spinBox.value()
+
     def game(self):
         #Space - пауза
         #ЛКМ - закрасить клетку
@@ -131,7 +137,7 @@ class App(QWidget):
                         pause = not pause
 
                     if event.key ==pygame.K_z:
-                        self.start()
+                        self.settings()
 
                     if pause == False:
                         fps = ffps
@@ -154,9 +160,6 @@ class App(QWidget):
             pygame.display.update()
 
         pygame.quit()
-
-
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
