@@ -13,6 +13,7 @@ class App(QWidget):
         super(App, self).__init__()
         self.ui = uic.loadUi("mydesign.ui")
         self.uiy = uic.loadUi("settings.ui")
+        self.uii = uic.loadUi("rules.ui")
         self.start()
         self.btn_start()
         self.btn_settings()
@@ -23,12 +24,17 @@ class App(QWidget):
         self.btn_size4()
         self.btn_exit()
         self.spin()
+        self.rules()
+        self.btn_back1()
 
     def start(self):
         self.ui.show()
 
     def settings(self):
         self.uiy.show()
+
+    def info(self):
+        self.uii.show()
 
     def btn_settings(self):
         self.ui.btn_settings.clicked.connect(lambda: self.settings())
@@ -88,11 +94,15 @@ class App(QWidget):
         global ffps
         ffps = self.uiy.spinBox.value()
 
+    def rules(self):
+        self.ui.btn_info.clicked.connect(lambda: self.info())
+        self.ui.btn_info.clicked.connect(lambda: self.ui.close())
+
+    def btn_back1(self):
+        self.uii.btn_back1.clicked.connect(lambda: self.start())
+        self.uii.btn_back1.clicked.connect(lambda: self.uii.close())
+
     def game(self):
-        #Space - пауза
-        #ЛКМ - закрасить клетку
-        #ПКМ - удалить клетку
-        #Esc - выход
 
         # Размеры окна
         width = a
@@ -106,55 +116,56 @@ class App(QWidget):
         clock = pygame.time.Clock()
         fps = ffps
 
+        # Толщина и размер сетки
+        rate = 30
+        thickness = 1
+
+        Grid = grid.layout(width, height, rate, thickness)
+        Grid.random()
+
         # Константы цветов RGB
         black = (0, 0, 0)
-        blue = (0, 121, 150)
-        blue1 = (0, 0, 100)
         white = (255, 255, 255)
         green = (76, 175, 80)
 
-        # Толщина и размер сетки
-        scaler = 30
-        offset = 1
-
-        Grid = grid.Grid(width, height, scaler, offset)
-        Grid.random2d_array()
-
         # Основной цикл
         pause = False
-        run = True
-        while run:
+        start = True
+        while start:
             clock.tick(fps)
             screen.fill(black)
 
+            Grid.conway(dead=white, alive=green, surface=screen, pause=pause)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                   run = False
+                   start = False
                 if event.type == pygame.KEYUP:
+
+                    #Выход
                     if event.key == pygame.K_ESCAPE:
-                        run = False
+                        start = False
+
+                    #Пауза
                     if event.key == pygame.K_SPACE:
                         pause = not pause
-
-                    if event.key ==pygame.K_z:
-                        self.settings()
 
                     if pause == False:
                         fps = ffps
                     if pause == True:
                         fps = 30
 
-            Grid.Conway(off_color=white, on_color=green, surface=screen, pause=pause)
 
-            # ЛКМ
-            if pygame.mouse.get_pressed()[0]:
-                mouseX, mouseY = pygame.mouse.get_pos()
-                Grid.HandleMouse(mouseX, mouseY)
 
             # ПКМ
             if pygame.mouse.get_pressed()[2]:
                 mouseX, mouseY = pygame.mouse.get_pos()
-                Grid.HandriMouse(mouseX, mouseY)
+                Grid.rightmouse(mouseX, mouseY)
+
+            # ЛКМ
+            if pygame.mouse.get_pressed()[0]:
+                mouseX, mouseY = pygame.mouse.get_pos()
+                Grid.leftmouse(mouseX, mouseY)
 
             # Обновление экрана
             pygame.display.update()

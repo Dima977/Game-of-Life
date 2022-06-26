@@ -21,32 +21,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="2">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="1" column="0">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
     <item row="1" column="1">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -101,7 +75,7 @@ color:#2f6a31;
 }</string>
         </property>
         <property name="text">
-         <string>Старт</string>
+         <string>Играть</string>
         </property>
         <property name="checkable">
          <bool>false</bool>
@@ -177,6 +151,44 @@ color:#2f6a31;
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="btn_info">
+        <property name="font">
+         <font>
+          <family>Arial Black</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <underline>false</underline>
+          <strikeout>false</strikeout>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 24px;
+}
+QPushButton:hover{
+color: white;
+background-color:#5fb962;
+}
+
+QPushButton:pressed{
+color:#2f6a31;
+}</string>
+        </property>
+        <property name="text">
+         <string>Правила</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="btn_exit">
         <property name="font">
          <font>
@@ -229,6 +241,19 @@ color:#2f6a31;
       </property>
      </spacer>
     </item>
+    <item row="1" column="2">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="3" column="1">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
@@ -242,12 +267,18 @@ color:#2f6a31;
       </property>
      </spacer>
     </item>
-    <item row="4" column="1">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'JetBrains Mono','monospace'; color:#ffffff;&quot;&gt;Space - пауза&lt;br/&gt;ЛКМ - закрасить клетку&lt;br/&gt;ПКМ - удалить клетку&lt;br/&gt;Esc - выход&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
-     </widget>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
@@ -257,7 +288,7 @@ color:#2f6a31;
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
