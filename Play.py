@@ -135,7 +135,7 @@ class App(QWidget):
             clock.tick(fps)
             screen.fill(black)
 
-            Grid.conway(dead=white, alive=green, surface=screen, pause=pause)
+            Grid.conway(off=white, on=green, surface=screen, pause=pause)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -154,8 +154,6 @@ class App(QWidget):
                         fps = ffps
                     if pause == True:
                         fps = 30
-
-
 
             # ПКМ
             if pygame.mouse.get_pressed()[2]:
