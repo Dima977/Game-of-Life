@@ -135,7 +135,7 @@ class App(QWidget):
             clock.tick(fps)
             screen.fill(black)
 
-            Grid.conway(off=white, on=green, surface=screen, pause=pause)
+            Grid.main(off=white, on=green, surface=screen, pause=pause)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

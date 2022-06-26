@@ -12,22 +12,20 @@ class layout:
         self.array = numpy.ndarray(shape=(self.size))
         self.thickness = thickness
 
-    def random(self):
-        #закрашивание клеток в начале игры
-        for x in range(self.row): #цикл количество чисел от 0 до row
-            for y in range(self.col):#цикл количество чисел от 0 до col
+    def random(self):#закрашивание клеток в начале игры
+        for x in range(self.row): #цикл, вывод чисел от 0 до row
+            for y in range(self.col):#цикл, вывод чисел от 0 до col
                 self.array[x][y] = random.randint(0,1) # случайное число 0 или 1
 
-    def conway(self, off, on, surface, pause):
-        for x in range(self.row): #цикл количество чисел от 0 до row
-            for y in range(self.col): #цикл количество чисел от 0 до col
+    def main(self, off, on, surface, pause):
+        for x in range(self.row): #цикл, вывод чисел от 0 до row
+            for y in range(self.col): #цикл, вывод чисел от 0 до col
                 y_pos = y * self.rate
                 x_pos = x * self.rate
                 if self.array[x][y] == 1:
                     pygame.draw.rect(surface, on, [x_pos, y_pos, self.rate-self.thickness, self.rate-self.thickness]) #"Живые" клетки
                 else:
                     pygame.draw.rect(surface, off, [x_pos, y_pos, self.rate-self.thickness, self.rate-self.thickness]) # "Мертвые" клетки
-
 #основной алгоритм игры
         next = numpy.ndarray(shape=(self.size))
         if pause == False:
